@@ -20,41 +20,41 @@
 
  * 使用带有正则匹配功能的编辑器打开比如：Nodepad++
 
- ### 	3.1处理标题
+	### 3.1处理标题
+	
+	* 字符串匹配`\#`替换成`#`
 
-  * 字符串匹配`\#`替换成`#`
+	### 3.2处理word的表格显示代码
 
- ### 	3.2处理word的表格显示代码
-
-* 正则匹配```<br>`([^`]*)` ```替换成`\r$1`
-  * 注意正则匹配不要将多个br连在一起匹配
-
-* 正则匹配`<br>`替换成`\r`
-* 处理`\|Java`\`替换成`\#XML`、`\#Shell`、`\#JSON`、`\#Plain Text`
-    * 正则匹配`\|(Java|YAML|XML|SQL|JSON|Shell|Bash|Plain Text)`替换成```$1
-* 正则匹配`^\| :- \|$`替换成```
-* 注意不要匹配到表格，示例如下：
-
-```java
-|参数|说明|
-| :- | :- |
-|Endpoint|对象存储服务的URL|
-|Access Key|Access key就像用户ID，可以唯一标识你的账户。|
-|Secret Key|Secret key是你账户的密码。|
-
-示例代码如下：
+	* 正则匹配```<br>`([^`]*)` ```替换成`\r$1`
+	* 注意正则匹配不要将多个br连在一起匹配
+	* 正则匹配`<br>`替换成`\r`
+	* 处理`\|Java`\`替换成`\#XML`、`\#Shell`、`\#JSON`、`\#Plain Text`
+	* 正则匹配`\|(Java|YAML|XML|SQL|JSON|Shell|Bash|Plain Text)`替换成```$1
     
-|Java
-import io.minio.BucketExistsArgs;
+	* 正则匹配`^\| :- \|$`替换成```
+	* 注意不要匹配到表格，示例如下：
 
-public class FileUploader {
-  public static void main(String[] args)throws IOException, NoSuchAlgorithmException, InvalidKeyException {
-    
-}|
-| :- |
-```
+	```java
+	|参数|说明|
+	| :- | :- |
+	|Endpoint|对象存储服务的URL|
+	|Access Key|Access key就像用户ID，可以唯一标识你的账户。|
+	|Secret Key|Secret key是你账户的密码。|
+	
+	示例代码如下：
+		
+	|Java
+	import io.minio.BucketExistsArgs;
+	
+	public class FileUploader {
+	  public static void main(String[] args)throws IOException, NoSuchAlgorithmException, InvalidKeyException {
+		
+	}|
+	| :- |
+	```
 
-* 最后`\|$`替换成空
+	* 最后`\|$`替换成空
 
 ## 4.处理特殊符号
 
@@ -63,6 +63,7 @@ public class FileUploader {
 * 字符串匹配`\_`替换成`_`
 
 * 处理错误转换的空格
+  
   * 正则匹配````( +)` ```替换成  两个空格（空格太多会被md识别为代码格式），比如：
   
   ```
@@ -95,3 +96,16 @@ HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统�
 HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。
 ```
 
+* 解决方法正则匹配`^\\([0-9])`替换成`$1`
+  * 该正则使用要慎重，注意不要匹配到正确的数据
+
+## 6.最后可修改图片路径
+
+* 字符串匹配`![](`替换成`![](./imgs/chapter3/`
+
+  ```shell
+  mkdir imgs/chapter3
+  mv *.png ./imgs/chapter3
+  ```
+
+  
