@@ -132,8 +132,9 @@ HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统�
 * 丢失格式
   * 使用在线转换对于文本背景标注的格式会丢失
   * 后续解决。选中相似样式文本剪切出来，一个一个在md里找到文本进行处理
-  * `<table><td bgcolor=pink>`找到文本`</td></table>`表格加大内边距块级元素
-  * `<font style="background: pink">找到文本</font>`嵌入文字中行内样式
+  * html标签背景色github不支持
+  * `<table><td bgcolor=pink>`找到文本`</td></table>`表格加大内边距块级元素（不支持里面加粗）
+  * `<font style="background: pink">**找到文本**</font>`嵌入文字中行内样式
 
 
 ## 6.最后可修改图片路径
