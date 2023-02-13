@@ -6,12 +6,13 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @author mrt
- * @version 1.0
  * @description TODO
- * @date 2022/12/10 10:08
+ * @author Mr.M
+ * @date 2022/10/8 11:29
+ * @version 1.0
  */
-@Data
+ @Data
 public class CourseCategoryTreeDto extends CourseCategory {
- List childrenTreeNodes;
+     //子分类
+     List<CourseCategoryTreeDto> childrenTreeNodes;
 }

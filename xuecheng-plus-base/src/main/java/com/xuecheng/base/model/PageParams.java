@@ -19,11 +19,10 @@ public class PageParams {
   //每页记录数默认值
   public static final long DEFAULT_PAGE_SIZE = 10L;
 
-  @ApiModelProperty("当前页码")
   //当前页码
+  @ApiModelProperty("当前页码")
   private Long pageNo = DEFAULT_PAGE_CURRENT;
 
-  @ApiModelProperty("每页记录数")
   //每页记录数默认值
   private Long pageSize = DEFAULT_PAGE_SIZE;
 

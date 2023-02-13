@@ -7,8 +7,8 @@ import com.xuecheng.content.mapper.CourseCategoryMapper;
 import com.xuecheng.content.model.dto.CourseCategoryTreeDto;
 import com.xuecheng.content.model.dto.QueryCourseParamsDto;
 import com.xuecheng.content.model.po.CourseBase;
+import com.xuecheng.content.model.po.CourseCategory;
 import com.xuecheng.content.service.CourseBaseInfoService;
-import com.xuecheng.content.service.CourseCategoryService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +26,7 @@ class ContentServiceApplicationTests {
     CourseBaseInfoService courseBaseInfoService;
 
     @Autowired
-    CourseCategoryService courseCategoryService;
-
+    CourseCategoryMapper courseCategoryMapper;
 
     @Test
     void testCourseBaseMapper() {
@@ -41,11 +40,10 @@ class ContentServiceApplicationTests {
         System.out.println(courseBasePageResult);
     }
     @Test
-    void testCourseCategoryService() {
-        List<CourseCategoryTreeDto> courseCategoryTreeDtos = courseCategoryService.queryTreeNodes("1");
+    void testCourseCategoryMapper() {
+
+        List<CourseCategoryTreeDto> courseCategoryTreeDtos = courseCategoryMapper.selectTreeNodes();
         System.out.println(courseCategoryTreeDtos);
     }
-
-
 
 }
