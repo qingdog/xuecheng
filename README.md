@@ -151,8 +151,15 @@ HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统�
     * 选择相似样式全部复制出来，人工对比起始文本后再替换
     * `^(.*)\*([^\*|\r]+)\*([^\*])`扩大匹配范围替换成`$1$2$3$4`
 
+## 6.最后处理图片
 
-## 6.最后可修改图片路径
+* 在线转换导出图片不是原图
+
+* 使用pandoc把图片输出到当前路径的media目录下`--extract-media .`，-i指定word文档，-o输出到md
+
+  ```shell
+  pandoc --extract-media . -i 6.docx -o 6.md
+  ```
 
 * 字符串匹配`![](`替换成`![](./imgs/chapter3/`
 
