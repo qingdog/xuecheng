@@ -36,6 +36,12 @@
 
 * 使用带有正则匹配功能的编辑器打开比如：Nodepad++
 
+* Notepad++换行符匹配问题
+
+  * 使用正则`.\n`可能匹配不到换行符
+  * 保存为windows(CR LF)格式的txt时候换行标志为：CR+LF（\r\n）。例如：`hosts`文件
+  * 保存为unix(LF)格式的txt时候换行标志为：LF（\n）。例如：`.gitconfig`文件
+
   ### 3.1处理标题
 
   * `^(\*\*[0-9] )`替换成`## $1`
@@ -59,10 +65,13 @@
   * 正则匹配`<br>`替换成`\r`
   * 处理`\|Java`和XML、Shell、JSON、#Plain Text
   * 正则匹配`\|(Java|YAML|XML|SQL|JSON|Shell|Bash|Plain Text|HTML)`替换成```$1
-  
-  * 正则匹配`^\| :- \|$`替换成```
-  * 注意不要匹配到表格，示例如下：
-  
+
+  * `\|\r\n\| :- \|`123\r\n```
+
+    * 正则匹配`^\| :- \|$`替换成```
+    * 注意不要匹配到表格，示例如下：
+
+
   ```java
   |参数|说明|
   | :- | :- |
@@ -81,12 +90,13 @@
   }|
   | :- |
   ```
-  
-  * 最后`\|$`替换成空
+
+  * ​	最后`\|$`替换成空
   * 慎重替换可先计数后匹配查看再替换
   * `\*\*([a-z|A-Z|-]+)\*\*`替换成`$1`处理代码错误的加粗
   * `\*([a-z|A-Z|-]+)\*`替换成`$1`处理代码错误的斜体
     * 先处理特殊符号星号再扩大范围处理错误的斜体`([^\*])\*([^0-9|\r|\*| ]+)\*([^\*])`替换成`$1$2$3`
+
 
 ## 4.处理特殊符号
 
@@ -153,7 +163,9 @@ HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统�
 
 ## 6.最后处理图片
 
-* 在线转换导出图片不是原图
+* 在线转换缺点导出图片不是原图
+
+* pandoc缺点不能正确转换表格，表格的代码没有保留空格的格式
 
 * 使用pandoc把图片输出到当前路径的media目录下`--extract-media .`，-i指定word文档，-o输出到md
 
@@ -161,13 +173,13 @@ HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统�
   pandoc --extract-media . -i 6.docx -o 6.md
   ```
 
+* 
+
 * 字符串匹配`![](`替换成`![](./imgs/chapter3/`
 
-  * `!\[\]\(`替换成`!\[\]\(\./imgs/chapter3/`
-  
+  * `(!\[\]\()Aspose\.Words\.e6f4eae8-6e80-43fc-8de8-694315406177.0([1-9])?0?([0-9]\.png\))`替换成`$1./imgs/chapter6/image$2$3`
+
   ```shell
-  mkdir imgs/chapter3
-  mv *.png ./imgs/chapter3
+  mkdir imgs/chapter6
+  mv *.png ./imgs/chapter6
   ```
-  
-  
